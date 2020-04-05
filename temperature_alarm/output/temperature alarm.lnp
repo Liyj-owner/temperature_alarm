@@ -1,0 +1,8 @@
+"..\output\STARTUP.obj",
+"..\output\lcd.obj",
+"..\output\temp.obj",
+"..\output\beep.obj",
+"..\output\booth.obj",
+"..\output\main.obj" 
+TO "..\output\temperature alarm" 
+PRINT(".\Listings\temperature alarm.m51") RAMSIZE(256) 

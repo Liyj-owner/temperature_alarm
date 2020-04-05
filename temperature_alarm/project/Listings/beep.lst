@@ -1,0 +1,66 @@
+C51 COMPILER V9.59.0.0   BEEP                                                              04/05/2020 23:31:49 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE BEEP
+OBJECT MODULE PLACED IN ..\output\beep.obj
+COMPILER INVOKED BY: E:\keil51\C51\BIN\C51.EXE ..\user\beep.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\inc;..\user) DEBUG OBJE
+                    -CTEXTEND PRINT(.\Listings\beep.lst) TABS(2) OBJECT(..\output\beep.obj)
+
+line level    source
+
+*** WARNING C500 IN LINE 1 OF ..\user\beep.c: LICENSE ERROR (R207(3): REGISTRY READ ERROR)
+
+   1          #include"beep.h"
+   2          
+   3          /*******************************************************************************
+   4          * 函 数 名         : BeepInitTimer0
+   5          * 函数功能         : 使用定时器控制无源蜂鸣器发声，初始化定时器0
+   6          * 输    入         : 无
+   7          * 输    出         : 无
+   8          *******************************************************************************/
+   9          void BeepInitTimer0(void)
+  10          {
+  11   1          TMOD = 0x21; //设置定时计数器0的工作方式1，定时计数器工作方式2
+  12   1          TH0 = 0x0FF;  //装初值1ms溢出一次
+  13   1          TL0 = 0x38;
+  14   1          EA = 1;  //开总中断
+  15   1          ET0 = 0;//关闭定时器0中断
+  16   1          TR0 = 0;//关闭定时器0
+  17   1      }
+  18          /*******************************************************************************
+  19          * 函 数 名         : BeepOpen
+  20          * 函数功能         : 开启定时0中断，启动启蜂鸣器发声功能
+  21          * 输    入         : 无
+  22          * 输    出         : 无
+  23          *******************************************************************************/
+  24          void BeepOpen()
+  25          {
+  26   1      ET0 = 1;//开定时器0中断
+  27   1      TR0 = 1;//启动定时器0
+  28   1      }
+  29          /*******************************************************************************
+  30          * 函 数 名         : BeepClose
+  31          * 函数功能         : 关闭定时器0中断，关闭蜂鸣器发声功能
+  32          * 输    入         : 无
+  33          * 输    出         : 无
+  34          *******************************************************************************/
+  35          void BeepClose()
+  36          {
+  37   1      ET0=0;//关闭定时器0中断
+  38   1      TR0=0;//关闭定时器0
+  39   1      }
+  40          /*定时器0溢出中断程序在main主程序里面*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     26    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
